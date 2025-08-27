@@ -63,6 +63,10 @@ h2 {
   display: block;
   margin: 0 auto;
 
+  width: 250px;          /* fixed width */
+  height: 250px;         /* fixed height */
+  object-fit: contain;    /* scale the image to fit while keeping aspect ratio */
+
   box-shadow: rgba(0, 0, 0, 0.15) 0px 2px 8px;
 }
 
@@ -74,4 +78,19 @@ li {
 /* Capitalize the first letter of the title */
 .card--title {
   text-transform: capitalize;
+}
+
+/* Style the games section title */
+.card h4 {
+  text-align: center;         /* match the title alignment */
+  margin-top: 1rem;           /* space above the section */
+  margin-bottom: 0.5rem;      /* space below the section */
+  font-size: 1rem;            /* slightly smaller than card title */
+  color: #333;                /* subtle color */
+  font-weight: 600;           /* make it stand out a bit */
+}
+
+/* Style the game section */
+.card--games {
+  text-align: center;         /* match the title alignment */
 }

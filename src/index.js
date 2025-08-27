@@ -15,7 +15,10 @@ function drawCards() { // create a card for each pokemon
         // create the image
         const img = document.createElement("img");
         img.className = "card--img";
-        img.src = pokemon.sprites.other["official-artwork"].front_default;
+        img.src = pokemon.sprites.other["official-artwork"].front_default; // start with default image
+
+        // Attach toggle functionality between images
+        togglePokemonImage(img, pokemon);
         card.appendChild(img);
 
         // create the stats list
@@ -28,9 +31,49 @@ function drawCards() { // create a card for each pokemon
         });
         card.appendChild(statsList);
 
+        // section about which games the pokemon appeard in
+        const gamesTitle = document.createElement("h4");
+        gamesTitle.textContent = "Appeared in the following games";
+        card.appendChild(gamesTitle);
+
+        // add the list of games 
+        const gamesList = document.createElement("p");
+        gamesList.className = "card--games";
+        const gameNames = [];
+        // loop through the generations and games
+        for (const gen in pokemon.sprites.versions) {
+            const genGames = pokemon.sprites.versions[gen];
+            for (const game in genGames) {
+                gameNames.push(game); // add the game name to the array
+            }
+        }
+        gamesList.textContent = gameNames.join(", ");
+        card.appendChild(gamesList);
+
         // append the card to the container
         cardsContainer.appendChild(card);
+
     });
 }
 
 drawCards();
+
+
+function togglePokemonImage(img, pokemon) {
+    const images = [
+        pokemon.sprites.front_default,
+        pokemon.sprites.back_default,
+        pokemon.sprites.front_shiny,
+        pokemon.sprites.back_shiny,
+        pokemon.sprites.other["official-artwork"].front_default
+    ].filter(Boolean); // remove nulls
+
+    let currentImageIndex = 0;
+
+    img.addEventListener("click", () => {
+        currentImageIndex = (currentImageIndex + 1) % images.length;
+        img.src = images[currentImageIndex];
+    });
+}
+
+

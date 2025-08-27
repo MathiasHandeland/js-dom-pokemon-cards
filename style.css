@@ -65,3 +65,13 @@ h2 {
 
   box-shadow: rgba(0, 0, 0, 0.15) 0px 2px 8px;
 }
+
+/* Remove the dot in list items */
+li {
+  list-style-type: none;
+}
+
+/* Capitalize the first letter of the title */
+.card--title {
+  text-transform: capitalize;
+}
